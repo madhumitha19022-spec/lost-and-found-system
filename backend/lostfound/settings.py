@@ -10,11 +10,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------------------------------
 # SECURITY
 # ---------------------------------------------------------------------------
-SECRET_KEY = "django-insecure-campus-lost-found-dev-key-change-in-production"
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", "django-insecure-campus-lost-found-dev-key-change-in-production"
+)
 
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True").lower() in ("true", "1", "t")
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
 
 # ---------------------------------------------------------------------------
 # APPLICATION DEFINITION

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Campus Lost &amp; Found</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ====================== NAVBAR ====================== -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="brand" data-nav="home">
+      <span class="brand-icon">🎒</span>
+      <span>Campus <strong>Lost&amp;Found</strong></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" data-nav="home" class="active">Home</a>
+      <a href="#report-lost" data-nav="report-lost">Report Lost</a>
+      <a href="#report-found" data-nav="report-found">Report Found</a>
+      <a href="#browse" data-nav="browse">Browse Items</a>
+      <a href="#about" data-nav="about">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ====================== TOAST ====================== -->
+<div id="toast" class="toast"></div>
+
+<!-- ====================== HOME ====================== -->
+<section id="home" class="page active-page">
+  <div class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">📍 For students &amp; staff across campus</span>
+      <h1>Lost something? <br/>Found something? <br/><span class="accent">We've got you.</span></h1>
+      <p>Campus Lost &amp; Found is the quickest way to report a missing item or hand in something you found — so it finds its way back to the right person.</p>
+      <div class="hero-actions">
+        <a href="#report-lost" data-nav="report-lost" class="btn btn-primary">Report Lost Item</a>
+        <a href="#report-found" data-nav="report-found" class="btn btn-outline">Report Found Item</a>
+      </div>
+      <div class="hero-stats" id="heroStats">
+        <div class="stat"><strong id="statTotal">0</strong><span>Total reports</span></div>
+        <div class="stat"><strong id="statLost">0</strong><span>Lost</span></div>
+        <div class="stat"><strong id="statFound">0</strong><span>Found</span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="floating-card fc1">🎧 Earphones <span>Found</span></div>
+      <div class="floating-card fc2">💳 ID Card <span>Found</span></div>
+      <div class="floating-card fc3">💻 Laptop <span>Lost</span></div>
+      <div class="hero-circle"></div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <h2 class="section-title">How it works</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon">📝</div>
+        <h3>1. Report</h3>
+        <p>Fill in a quick form describing what you lost or found — item, location, date, and a way to reach you.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">🔎</div>
+        <h3>2. Browse &amp; Search</h3>
+        <p>Search and filter through all reported items by category, status, or item name to find a match.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">🤝</div>
+        <h3>3. Reconnect</h3>
+        <p>Reach out using the listed contact details and get your belongings back where they belong.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== REPORT LOST ====================== -->
+<section id="report-lost" class="page">
+  <div class="form-page">
+    <div class="form-header">
+      <h2>Report a Lost Item</h2>
+      <p>Lost something on campus? Tell us the details below and we'll list it for others to spot.</p>
+    </div>
+    <form id="lostForm" class="item-form" novalidate>
+      <input type="hidden" name="status" value="Lost" />
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="lost_item_name">Item Name *</label>
+          <input type="text" id="lost_item_name" name="item_name" placeholder="e.g. Black Dell Laptop" required />
+          <span class="field-error" data-error-for="item_name"></span>
+        </div>
+        <div class="form-field">
+          <label for="lost_category">Category *</label>
+          <select id="lost_category" name="category" required></select>
+          <span class="field-error" data-error-for="category"></span>
+        </div>
+        <div class="form-field">
+          <label for="lost_location">Last Seen Location *</label>
+          <input type="text" id="lost_location" name="location" placeholder="e.g. Library, 2nd floor" required />
+          <span class="field-error" data-error-for="location"></span>
+        </div>
+        <div class="form-field">
+          <label for="lost_date">Date Lost *</label>
+          <input type="date" id="lost_date" name="date" required />
+          <span class="field-error" data-error-for="date"></span>
+        </div>
+        <div class="form-field span-2">
+          <label for="lost_description">Description</label>
+          <textarea id="lost_description" name="description" rows="3" placeholder="Color, brand, any identifying marks..."></textarea>
+          <span class="field-error" data-error-for="description"></span>
+        </div>
+        <div class="form-field">
+          <label for="lost_contact_name">Your Name *</label>
+          <input type="text" id="lost_contact_name" name="contact_name" placeholder="Full name" required />
+          <span class="field-error" data-error-for="contact_name"></span>
+        </div>
+        <div class="form-field">
+          <label for="lost_contact_email">Your Email *</label>
+          <input type="email" id="lost_contact_email" name="contact_email" placeholder="you@college.edu" required />
+          <span class="field-error" data-error-for="contact_email"></span>
+        </div>
+        <div class="form-field span-2">
+          <label for="lost_image">Photo (optional)</label>
+          <input type="file" id="lost_image" name="image" accept="image/*" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="reset" class="btn btn-ghost">Clear</button>
+        <button type="submit" class="btn btn-primary">Submit Lost Report</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ====================== REPORT FOUND ====================== -->
+<section id="report-found" class="page">
+  <div class="form-page">
+    <div class="form-header">
+      <h2>Report a Found Item</h2>
+      <p>Found something that isn't yours? Let's help it find its owner.</p>
+    </div>
+    <form id="foundForm" class="item-form" novalidate>
+      <input type="hidden" name="status" value="Found" />
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="found_item_name">Item Name *</label>
+          <input type="text" id="found_item_name" name="item_name" placeholder="e.g. Blue Water Bottle" required />
+          <span class="field-error" data-error-for="item_name"></span>
+        </div>
+        <div class="form-field">
+          <label for="found_category">Category *</label>
+          <select id="found_category" name="category" required></select>
+          <span class="field-error" data-error-for="category"></span>
+        </div>
+        <div class="form-field">
+          <label for="found_location">Location Found *</label>
+          <input type="text" id="found_location" name="location" placeholder="e.g. Canteen, near counter" required />
+          <span class="field-error" data-error-for="location"></span>
+        </div>
+        <div class="form-field">
+          <label for="found_date">Date Found *</label>
+          <input type="date" id="found_date" name="date" required />
+          <span class="field-error" data-error-for="date"></span>
+        </div>
+        <div class="form-field span-2">
+          <label for="found_description">Description</label>
+          <textarea id="found_description" name="description" rows="3" placeholder="Color, brand, any identifying marks..."></textarea>
+          <span class="field-error" data-error-for="description"></span>
+        </div>
+        <div class="form-field">
+          <label for="found_contact_name">Your Name *</label>
+          <input type="text" id="found_contact_name" name="contact_name" placeholder="Full name" required />
+          <span class="field-error" data-error-for="contact_name"></span>
+        </div>
+        <div class="form-field">
+          <label for="found_contact_email">Your Email *</label>
+          <input type="email" id="found_contact_email" name="contact_email" placeholder="you@college.edu" required />
+          <span class="field-error" data-error-for="contact_email"></span>
+        </div>
+        <div class="form-field span-2">
+          <label for="found_image">Photo (optional)</label>
+          <input type="file" id="found_image" name="image" accept="image/*" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="reset" class="btn btn-ghost">Clear</button>
+        <button type="submit" class="btn btn-primary">Submit Found Report</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ====================== BROWSE ITEMS ====================== -->
+<section id="browse" class="page">
+  <div class="browse-page">
+    <div class="form-header">
+      <h2>Browse Items</h2>
+      <p>Search and filter through everything reported so far.</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Search by item name..." />
+      </div>
+      <select id="filterCategory"><option value="">All Categories</option></select>
+      <select id="filterStatus">
+        <option value="">All Status</option>
+        <option value="Lost">Lost</option>
+        <option value="Found">Found</option>
+      </select>
+      <select id="sortBy">
+        <option value="-date">Newest date first</option>
+        <option value="date">Oldest date first</option>
+        <option value="-created_at">Recently reported</option>
+        <option value="item_name">Item name (A–Z)</option>
+      </select>
+      <div class="view-toggle">
+        <button id="viewCardsBtn" class="view-btn active" title="Card view">▦</button>
+        <button id="viewTableBtn" class="view-btn" title="Table view">☰</button>
+      </div>
+    </div>
+
+    <div id="itemsMeta" class="items-meta"></div>
+
+    <div id="itemsCardView" class="items-grid"></div>
+    <div id="itemsTableView" class="table-wrap hidden">
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th>Item</th><th>Category</th><th>Status</th><th>Location</th><th>Date</th><th>Contact</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="itemsTableBody"></tbody>
+      </table>
+    </div>
+
+    <div id="emptyState" class="empty-state hidden">
+      <div class="empty-icon">🗂️</div>
+      <h3>No items found</h3>
+      <p>Try adjusting your search or filters — or be the first to report an item.</p>
+    </div>
+
+    <div id="pagination" class="pagination"></div>
+  </div>
+</section>
+
+<!-- ====================== ABOUT ====================== -->
+<section id="about" class="page">
+  <div class="about-page">
+    <div class="form-header">
+      <h2>About Campus Lost &amp; Found</h2>
+      <p>A simple, student-built system to reunite people with their belongings.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>🎯 Our Mission</h3>
+        <p>Losing something on a busy campus is stressful. Campus Lost &amp; Found gives students and staff one central place to report lost items, log found ones, and search through active reports — instead of relying on scattered notice boards and group chats.</p>
+      </div>
+      <div class="about-card">
+        <h3>⚙️ How It's Built</h3>
+        <p>The frontend is plain HTML, CSS and JavaScript talking to a Django REST Framework API backed by SQLite. Every report, edit, and deletion goes straight through the REST API in real time.</p>
+      </div>
+      <div class="about-card">
+        <h3>🔐 Good to Know</h3>
+        <p>Please don't include sensitive personal information in item descriptions. Contact details you submit are shown publicly so others can reach you about a match.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== EDIT MODAL ====================== -->
+<div id="editModal" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Edit Item</h3>
+      <button id="closeModalBtn" class="modal-close">&times;</button>
+    </div>
+    <form id="editForm" class="item-form" novalidate>
+      <input type="hidden" name="id" />
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="edit_item_name">Item Name *</label>
+          <input type="text" id="edit_item_name" name="item_name" required />
+          <span class="field-error" data-error-for="item_name"></span>
+        </div>
+        <div class="form-field">
+          <label for="edit_category">Category *</label>
+          <select id="edit_category" name="category" required></select>
+          <span class="field-error" data-error-for="category"></span>
+        </div>
+        <div class="form-field">
+          <label for="edit_status">Status *</label>
+          <select id="edit_status" name="status" required>
+            <option value="Lost">Lost</option>
+            <option value="Found">Found</option>
+          </select>
+          <span class="field-error" data-error-for="status"></span>
+        </div>
+        <div class="form-field">
+          <label for="edit_location">Location *</label>
+          <input type="text" id="edit_location" name="location" required />
+          <span class="field-error" data-error-for="location"></span>
+        </div>
+        <div class="form-field">
+          <label for="edit_date">Date *</label>
+          <input type="date" id="edit_date" name="date" required />
+          <span class="field-error" data-error-for="date"></span>
+        </div>
+        <div class="form-field span-2">
+          <label for="edit_description">Description</label>
+          <textarea id="edit_description" name="description" rows="3"></textarea>
+          <span class="field-error" data-error-for="description"></span>
+        </div>
+        <div class="form-field">
+          <label for="edit_contact_name">Contact Name *</label>
+          <input type="text" id="edit_contact_name" name="contact_name" required />
+          <span class="field-error" data-error-for="contact_name"></span>
+        </div>
+        <div class="form-field">
+          <label for="edit_contact_email">Contact Email *</label>
+          <input type="email" id="edit_contact_email" name="contact_email" required />
+          <span class="field-error" data-error-for="contact_email"></span>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="cancelEditBtn" class="btn btn-ghost">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ====================== DELETE CONFIRM MODAL ====================== -->
+<div id="deleteModal" class="modal-overlay hidden">
+  <div class="modal modal-small">
+    <div class="modal-header">
+      <h3>Delete Item?</h3>
+      <button id="closeDeleteModalBtn" class="modal-close">&times;</button>
+    </div>
+    <p id="deleteModalText" class="modal-text"></p>
+    <div class="form-actions">
+      <button id="cancelDeleteBtn" class="btn btn-ghost">Cancel</button>
+      <button id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>Campus Lost &amp; Found — built with Django REST Framework + vanilla JS.</p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
